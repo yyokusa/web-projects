@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<a href="{% url 'create_listing' %}">New listing</a>
+<div class="index">
+    <h2>Active Listings</h2>
+    <ol>
+    {% for listing in all_listings %}
+        <div class="listing-item">
+            <li>
+                name: {{ listing.title }} <br>
+                explanation: {{ listing.description }} <br>
+                price: {{ listing.starting_bid }} <br>
+                date: {{ listing.date }} <br>
+                owner: {{ listing.owner }} <br>
+                owner: {{ listing.category }} <br>
+            </li>
+        </div>
+        {% empty %}
+            <div class="listing-item">
+                <li>No listings</li>
+            </div>
+    {% endfor %}
+    </ol>
+</div>
+    <!-- TODO -->
+{% endblock %}

@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Google Search</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="image_search.html">Image Search</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="advanced_search.html">Advanced Search</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <div id="main">
+            <div id="kismet_logo">
+                <img id="logo" src="google_tabela1.png" alt="kismet_search">
+            </div>
+            <div id="searchform">
+                <form action="https://google.com/search" method="get">
+                    <div>
+                        <input class="form-control input-lg" id="search_bar" type="text" name="q">
+                    </div>
+                    <div class="search_buttons">
+                        <input class="rounded search_button" type="submit" value="Google Search">
+                        <input class="rounded search_button" type="submit" name="btnI" value="I'm Feeling Lucky">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer class="page-footer font-small blue pt-4 aling-right">
+            <a href="https://www.github.com/yyokusa">Github</a>
+        </footer>
+    </body>
+</html>
+<!-- Name Attribute in Html Forms :
+The name attribute is required for each input field.
+If the name attribute is not specified in an input field
+then the data of that field would not be sent at all. -->

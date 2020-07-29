@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Google Advanced Search</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="google_search.html">Google Search</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <div style="margin-left: 65px;">
+            <p><h4 style="color: #d93025;">Advanced Search</h2></p>
+        </div>
+        <div style="border-bottom: 1px solid #ebebeb;"></div>
+        <div id="advanced_search_containeer">
+            <form action="https://www.google.com/search?" method="get" class="form-example">
+                <th><p>Find pages with…</p></th>
+                <table>
+                    <tr>
+                        <td><label for="as_q">all these words: </label></td>
+                        <td><input class="form-control input-lg" type="text" name="as_q"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="as_epq">this exact word or phrase: </label></td>
+                        <td><input class="form-control input-lg" type="text" name="as_epq"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="as_oq">any of these words: </label></td>
+                        <td><input class="form-control input-lg" type="text" name="as_oq"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="as_eq">none of these words:</label></td>
+                        <td><input class="form-control input-lg" type="text" name="as_eq"></td>
+                    </tr>
+                </table>
+                <div class="float-right" style="margin-top: 10px;">
+                    <input class="btn btn-primary" type="submit" value="Advanced Search">
+                </div>
+            </form>
+        </div>
+        <footer class="page-footer font-small blue pt-4 aling-right">
+            <a href="https://www.github.com/yyokusa">Github</a>
+        </footer>
+    </body>
+</html>

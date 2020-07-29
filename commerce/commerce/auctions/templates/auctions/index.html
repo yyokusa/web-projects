@@ -1,0 +1,56 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<a class="nav_buttons" href="{% url 'create_listing' %}">New listing</a>
+<a class="nav_buttons" href="{% url 'watchlist' %}">My watchlist</a>
+<a class="nav_buttons" href="{% url 'categories' %}">Categories</a>
+<a class="nav_buttons" href="{% url 'listings_closed' %}">Closed Listings</a>
+<div class="index">
+    <h2>Active Listings</h2>
+    <ol>
+    {% for listing in all_listings %}
+        <div class="listing-item">
+            <li>
+                <!-- {{ listing.image | linebreaks }} -->
+                {{ listing.title | linebreaks }}
+                Active: {{ listing.active }}
+                {{ listing.bid_value | linebreaks }}
+                {{ listing.date | linebreaks }}
+                {{ listing.owner | linebreaks }}
+                {{ listing.category | linebreaks }}
+            </li>
+            <a href="{% url 'listing_page' listing.id %}">
+                <button class="btn btn-info" >
+                    Detailed version
+                </button>
+            </a>
+            
+            <form action="{% url 'watchlist' %}" method="POST">
+                {% csrf_token %}
+                <input type='hidden' value='{{ listing.id }}' name='listing_id'>
+                <input class="btn btn-success" type="submit" name="modify" value="Add to Watchlist">
+            </form>
+            
+        </div>
+        {% empty %}
+            <div class="listing-item">
+                <li>No listings</li>
+            </div>
+    {% endfor %}
+    </ol>
+</div>
+    <!-- TODO -->
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

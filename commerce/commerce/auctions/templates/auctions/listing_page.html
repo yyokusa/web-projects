@@ -1,0 +1,89 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="index">
+    <div class="listing-item">
+        <h2 style="float: left; position: relative;" >{{  listing.title }}</h2>
+        
+        {% if listing.active and user.is_authenticated and user == listing.owner %}
+            <form action="{% url 'close_listing' %}" method="POST">
+                {% csrf_token %}
+                {{ close_listing_form }}
+                <input type="submit" class="btn btn-danger" value="Close the auction" style="float: right; position: relative;">
+            </form>
+        {% endif %}
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Highest Bid</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ listing.description }}</td>
+                    <td>{{ listing.starting_bid }}</td>
+                    <td>{{ listing.category }}</td>
+                    <td>{{ listing.owner }}</td>
+                    <td>{{ listing.date }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        {% if error_message %}
+            <h4 style="color: lightcoral;">{{ error_message }}</h4>
+        {% endif %}
+        {% if user.is_authenticated and listing.active %}
+            <div id="make_bid">
+                <h6>Bid on the item</h6>
+                <form action="{% url 'bid_item' %}" method="POST">
+                    {% csrf_token %}
+                    {{ bid_form }}
+                    <input type="submit" value="Bid" class="btn btn-warning">
+                </form>
+            </div>
+
+
+            <div id="add_comments">
+                <h6>Add a comment</h6>
+                <form action="{% url 'publish_comment' %}" method="POST">
+                    {% csrf_token %}
+                    {{ comment_form }}
+                    <input type='hidden' value='{{ listing.id }}' name='listing_id'>
+                    <input type="submit" name="modify" value="Publish Comment" class="btn btn-info">
+                </form>
+            </div>
+        {% elif listing.winner == user and user.is_authenticated %}
+            <h3 style="color: lightsalmon;">You ,{{listing.winner}}, win this item with {{ listing.starting_bid}} imaginary currency</h3>
+        {% endif %}
+        <h6>Comments</h6>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Users</th>
+                    <th scope="col">Comment Title</th>
+                    <th scope="col">Comment Body</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in listing.listing_comments.all %}
+                    <tr>
+                        <td>{{ comment.commenter }}</td>
+                        <td>{{ comment.comment_title }}</td>
+                        <td>{{ comment.comment_body }}</td>
+                    </tr>
+
+                    {% empty %}
+                        No comment
+
+                {% endfor %}
+            </tbody>
+        </table>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="index">
+    <h2>{{ category_name }} Category Items</h2>
+    <ol>
+    {% for listing in category_listings %}
+        <div class="listing-item">
+            <li>
+                {{ listing.title | linebreaks }}
+                {{ listing.bid_value | linebreaks }}
+                {{ listing.date | linebreaks }}
+            </li>
+            <a href="{% url 'listing_page' listing.id %}">Detailed version</a>
+        </div>
+        {% empty %}
+            <div class="listing-item">
+                <li>No listings</li>
+            </div>
+    {% endfor %}
+    </ol>
+</div>
+    <!-- TODO -->
+{% endblock %}

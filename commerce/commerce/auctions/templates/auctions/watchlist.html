@@ -1,0 +1,34 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="index">
+    <h2>Watchlist Items</h2>
+    <ol>
+    {% for listing in all_watchlist_items %}
+        <div class="listing-item">
+            <li>
+                {{ listing.title | linebreaks }}
+                {{ listing.bid_value | linebreaks }}
+                {{ listing.date | linebreaks }}
+            </li>
+            <a href="{% url 'listing_page' listing.id %}">
+                <button class="btn btn-info">
+                    Detailed version
+                </button>
+            </a>
+            <form action="{% url 'watchlist' %}" method="POST">
+                {% csrf_token %}
+                <input type='hidden' value='{{ listing.id }}' name='listing_id'>
+                <input class="btn btn-success" type="submit" name="modify" value="Remove from Watchlist">
+            </form>
+
+        </div>
+        {% empty %}
+            <div class="listing-item">
+                <li>No listings</li>
+            </div>
+    {% endfor %}
+    </ol>
+</div>
+    <!-- TODO -->
+{% endblock %}

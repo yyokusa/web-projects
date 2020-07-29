@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block body %}
+    <div class="entry_not_found">
+        <h5>There is no entry for {{ title }}</h5>
+        <p>Would you like to add one? <a href="{% url 'encyclopedia:newpage' %}" style="margin-left: 20px;">Create entry for {{ title }}</a></p>
+        {% if entries|length != 0 %}
+        <!-- While the above example works, be aware that most template filters return strings, so mathematical comparisons using filters will generally not work as you expect. length is an exception. -->
+            <h4>Some entries you may be looking for:</h4>
+            <ul>
+                {% for entry in entries %}
+                <!-- <li><a href="wiki/{{ entry }}">{{ entry }}</a></li> -->
+                <li><a href="{% url 'encyclopedia:title' entry %}">{{ entry }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif%}
+    </div>
+{% endblock %}
