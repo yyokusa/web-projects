@@ -7,16 +7,14 @@
     <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
     <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
     <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
-    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+    <button class="btn btn-sm btn-outline-primary" id="archive">Archived</button>
     <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
     <hr>
 
     <div id="emails-view">
     </div>
-
     <div id="compose-view">
         <h3>New Email</h3>
-        <h4 id="mail-sending-info"></h4>
         <form id="compose-form">
             <div class="form-group">
                 From: <input disabled class="form-control" value="{{ request.user.email }}">
@@ -28,9 +26,12 @@
                 <input class="form-control" id="compose-subject" placeholder="Subject">
             </div>
             <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
-            <input id="submit-mail" type="submit" class="btn btn-primary"/>
+            <input type="submit" class="btn btn-primary"/>
         </form>
     </div>
+
+    <div id="detailed-view"></div>
+    
 {% endblock %}
 
 {% block script %}
