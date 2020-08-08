@@ -1,0 +1,66 @@
+
+
+/* #detailed-view, #emails-view {
+    border: 3px solid skyblue; 
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+} */
+
+.email-box{
+    border: 3px solid skyblue; 
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: row; /* by default */
+}
+
+.email-box-detailed {
+    border: 3px solid skyblue; 
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.inbox {
+    border: 3px solid skyblue;
+    margin: 6px;
+}
+
+
+textarea {
+    min-height: 400px;
+}
+
+
+.email-timestamp {
+    margin-left: 75%;
+    margin-right: 0px;
+}
+
+.buttons {
+    margin: 6px 0px 6px 0px;
+    margin-left: auto;
+}
+.btn {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.read-email {
+    background-color: #8080809a;
+}
+
+.email-part-short {
+    margin: 0px 6px 0px 6px;
+}
+
+.email-part-long {
+    margin: 6px 0px 6px 0px;
+}

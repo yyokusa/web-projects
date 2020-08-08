@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-
   // Use buttons to toggle between views
   document.querySelector('#inbox').addEventListener('click', () => load_mailbox('inbox'));
   document.querySelector('#sent').addEventListener('click', () => load_mailbox('sent'));
   document.querySelector('#archive').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
-
-  //new
-  //new end
-
   // By default, load the inbox
   load_mailbox('inbox');
 });
@@ -25,7 +20,6 @@ function compose_email() {
   document.querySelector('#compose').disabled = true;
   document.querySelector('#sent').disabled = false;
   document.querySelector('#archive').disabled = false;
-  //buttons
 
   //form and post email
   let statusCode = 0;
@@ -62,8 +56,6 @@ function compose_email() {
     // Stop form from submitting
     return false;
   }
-  //form and post email end
-  
   
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = '';
@@ -78,7 +70,6 @@ function compose_email() {
  * @param {string} mailbox - Wanted mailbox name
  */
 function load_mailbox(mailbox) {
-   
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
@@ -93,8 +84,6 @@ function load_mailbox(mailbox) {
     else document.querySelector(mailboxName).disabled = false;
   })
   document.querySelector('#compose').disabled = false;
-  //buttons
-
 
   // GET the emails of the related mailbox
   fetch(`/emails/${mailbox}`)
@@ -120,7 +109,6 @@ function load_mailbox(mailbox) {
         timestampElement.className = 'email-timestamp';
         timestampElement.innerHTML = email.timestamp;
         singleEmailElement.append(timestampElement);
-        
 
         // unarchive view button
         if (mailbox === 'archive')
@@ -141,8 +129,6 @@ function load_mailbox(mailbox) {
           });
           singleEmailElement.append(unarchiveButton);
         }
-        // unarchive view button
-
 
         // detailed view button
         detailedViewButton.className = 'details-button btn btn-info';
@@ -152,25 +138,20 @@ function load_mailbox(mailbox) {
           load_detailed_email(event.target.dataset.emailno);
         });
         singleEmailElement.append(detailedViewButton);
-        // detailed view button
 
         // read email
         if (email.read) {
           singleEmailElement.style.backgroundColor = "gray";
         }
-        // read email
+
         document.querySelector('#emails-view').append(singleEmailElement);
       });
   });
-  // GET the emails of the related mailbox
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 }
 
-
-
 function load_detailed_email(emailno) {
- 
 
   fetch(`/emails/${emailno}`)
   .then(response => response.json())
@@ -199,7 +180,6 @@ function load_detailed_email(emailno) {
             })
         })
       });
-      // arhive
       
       // reply
       const replyButton = document.createElement('button');
@@ -208,7 +188,6 @@ function load_detailed_email(emailno) {
       replyButton.addEventListener("click", () => {
         load_prefilled_compose_view(emailno);
       });
-      // reply
 
       senderElement.className = "email-sender";
       senderElement.innerHTML = 'Sender: ' + sender;
@@ -223,8 +202,8 @@ function load_detailed_email(emailno) {
 
       const detailedEmailElement = document.createElement('div');
       detailedEmailElement.className = 'detailed-email';
-      
       const detailedViewElement = document.querySelector('#detailed-view');
+      
       
       detailedEmailElement.append(senderElement);
       detailedEmailElement.append(recipientsElement);
@@ -235,19 +214,14 @@ function load_detailed_email(emailno) {
       detailedEmailElement.append(replyButton);
       
       detailedViewElement.append(detailedEmailElement);
-      // ... do something else with email ...
   })
   .then(() => {
     // Show the deetailed email and hide other views
     document.querySelector('#detailed-view').style.display = 'block';    
     document.querySelector('#emails-view').style.display = 'none';
     document.querySelector('#compose-view').style.display = 'none';
-    // Show the deetailed email and hide other views END
-
-
     //buttons
     document.querySelector('#inbox').disabled = false;
-    //buttons
   });
   
   fetch(`/emails/${emailno}`, {
@@ -257,9 +231,6 @@ function load_detailed_email(emailno) {
     })
   });
 
-
-  // How does this work ?
-  // It is deleted after we left the page
   let detailedViewElement = document.querySelector('#detailed-view');
   while(detailedViewElement.firstChild) {
     detailedViewElement.removeChild(detailedViewElement.firstChild);
