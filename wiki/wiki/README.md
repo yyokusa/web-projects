@@ -1,4 +1,4 @@
-### WIKI:
+### WIKI
 Designed a Wikipedia-like online encyclopedia.
 * HTML, CSS
 * Python, Django
